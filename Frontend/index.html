@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EveShield MVP</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🛡️EveShield</h1>
+    <h2>We break the silence, we disrupt the violence. </h2>
+    <nav>
+      <ul>
+        <li><a href="#">Onboarding</a></li>
+        <li><a href="#">SOS Trigger</a></li>
+        <li><a href="#">Tracking</a></li>
+        <li><a href="#">Journal</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="onboarding">
+      <h2>Onboarding</h2>
+      <p>Set up emergency contacts and permissions.</p>
+    </section>
+
+    <section id="sos">
+      <h2>SOS Alert</h2>
+      <button onclick="sendSOS()">🔴 Send SOS</button>
+    </section>
+
+    <section id="tracker">
+      <h2>GPS Tracker</h2>
+      <p><button onclick="getLocation()">📍 Get My Location</button></p>
+      <div id="location-output"></div>
+    </section>
+
+    <section id="journal">
+      <h2>Trauma Journal</h2>
+      <textarea placeholder="Write your experience here..."></textarea>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
