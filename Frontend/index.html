@@ -3,46 +3,153 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EveShield MVP</title>
+  <title>EveShield</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <header>
     <h1>🛡️EveShield</h1>
-    <h2>We break the silence, we disrupt the violence. </h2>
+    <p class="tagline">We break the silence, we disrupt the violence.</p>
     <nav>
       <ul>
-        <li><a href="#">Onboarding</a></li>
-        <li><a href="#">SOS Trigger</a></li>
-        <li><a href="#">Tracking</a></li>
-        <li><a href="#">Journal</a></li>
+        <li><a href="#auth">Auth</a></li>
+        <li><a href="#onboarding">Onboarding</a></li>
+        <li><a href="#sos">SOS</a></li>
+        <li><a href="#tracker">Tracking</a></li>
+        <li><a href="#journal">Journal</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
+    <section id="auth" class="card">
+      <h2>Authentication</h2>
+      <div class="stack">
+        <form id="register-form" class="form">
+          <h3>Create account</h3>
+          <label>Phone Number
+            <input id="register-phone" type="tel" inputmode="tel" placeholder="e.g. +254700000000" required />
+          </label>
+          <label>Password
+            <input id="register-password" type="password" placeholder="••••••••" required />
+          </label>
+          <button id="register-button" type="submit">Register</button>
+        </form>
+
+        <form id="login-form" class="form">
+          <h3>Login</h3>
+          <label>Phone Number
+            <input id="login-phone" type="tel" inputmode="tel" placeholder="e.g. +254700000000" required />
+          </label>
+          <label>Password
+            <input id="login-password" type="password" placeholder="••••••••" required />
+          </label>
+          <button id="login-button" type="submit">Login</button>
+        </form>
+
+        <div class="row">
+          <button id="logout-button" class="secondary" type="button">Logout</button>
+          <span id="auth-status" class="muted"></span>
+        </div>
+      </div>
+    </section>
+
     <section id="onboarding">
       <h2>Onboarding</h2>
-      <p>Set up emergency contacts and permissions.</p>
+      <div class="card stack">
+        <form id="contact-form" class="form">
+          <h3>Add Emergency Contact</h3>
+          <label>Name
+            <input id="contact-name" type="text" placeholder="Contact name" required />
+          </label>
+          <label>Phone Number
+            <input id="contact-phone" type="tel" placeholder="e.g. +2547xxxxxxx" required />
+          </label>
+          <button id="contact-add" type="submit">Add Contact</button>
+        </form>
+
+        <div class="row">
+          <button id="fetch-policy" type="button" class="secondary">View Policy</button>
+          <button id="request-permissions" type="button" class="secondary">Grant App Permissions</button>
+        </div>
+
+        <pre id="policy-output" class="pre"></pre>
+      </div>
     </section>
 
     <section id="sos">
       <h2>SOS Alert</h2>
-      <button onclick="sendSOS()">🔴 Send SOS</button>
+      <div class="card">
+        <button id="sos-button">🔴 Send SOS</button>
+        <p id="sos-status" class="muted"></p>
+      </div>
     </section>
 
     <section id="tracker">
       <h2>GPS Tracker</h2>
-      <p><button onclick="getLocation()">📍 Get My Location</button></p>
-      <div id="location-output"></div>
+      <div class="card stack">
+        <div class="row">
+          <button id="location-button">📍 Get My Location</button>
+          <button id="send-location" class="secondary">Send to Server</button>
+        </div>
+        <div id="location-output" class="muted"></div>
+      </div>
     </section>
 
     <section id="journal">
       <h2>Trauma Journal</h2>
-      <textarea placeholder="Write your experience here..."></textarea>
+      <div class="card stack">
+        <textarea id="journal-text" placeholder="Write your experience here..." aria-label="Trauma journal entry"></textarea>
+        <div class="row">
+          <button id="journal-submit">Save Entry</button>
+          <span id="journal-status" class="muted"></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <h2>Resources</h2>
+      <div class="card stack">
+        <div class="row">
+          <button id="fetch-gbv" class="secondary">Get GBV Resources</button>
+          <button id="fetch-legal" class="secondary">Find Legal Aid</button>
+        </div>
+        <details>
+          <summary>Chat with assistant</summary>
+          <div class="row">
+            <input id="chat-input" type="text" placeholder="Type your message" />
+            <button id="chat-send">Send</button>
+          </div>
+          <pre id="chat-output" class="pre"></pre>
+        </details>
+        <pre id="resources-output" class="pre"></pre>
+      </div>
+    </section>
+
+    <section id="dashboard">
+      <h2>Dashboard</h2>
+      <div class="card">
+        <button id="dashboard-refresh" class="secondary">Refresh</button>
+        <pre id="dashboard-output" class="pre"></pre>
+      </div>
     </section>
   </main>
+
+  <div id="chat-widget" aria-live="polite" aria-label="EveShield Assistant" class="chat-hidden">
+    <div class="chat-header">
+      <span>Assistant</span>
+      <button id="chat-close" aria-label="Close chat" class="secondary">✕</button>
+    </div>
+    <div id="chat-messages" class="chat-messages"></div>
+    <div class="chat-input">
+      <input id="chat-widget-input" type="text" placeholder="Type a message..." />
+      <button id="chat-widget-send">Send</button>
+    </div>
+  </div>
+  <button id="chat-toggle" class="chat-toggle" aria-label="Open chat">💬</button>
 
   <script src="script.js"></script>
 </body>
